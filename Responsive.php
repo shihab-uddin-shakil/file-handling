@@ -88,9 +88,7 @@
 
 
 
-			if($firstNameErr == "" && $lastNameErr == "" && $websiteErr == "") {
-				echo "Successful " . $firstName . " " . $lastName . " " . $website;
-			}
+		
 		}
     
 	?>
