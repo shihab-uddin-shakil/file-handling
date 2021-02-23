@@ -33,25 +33,28 @@
 			if(empty($_POST['email'])) {
 				$emailErr = "Please fill up the website";
 			}
-			else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			/*else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   				$emailErr = "Invalid Email Format";
-			}
+			}*/
 			else {
 				$email = $_POST['email'];
-                $myfile = fopen("$email.txt", "w+") or die("Unable to open file!");
+            
+                $myfile = fopen("email.txt", "w+") ;
                  $txt = $email;
                   fwrite($myfile, $txt);
-                   $txt =  $email;;
-                   fwrite($myfile, $txt);
+                  // $txt = $email;
+                  //fwrite($myfile, $txt);
                     fclose($myfile);
 			}
 
-            if(empty($_POST['gender'])) {
+          /*  if(empty($_POST['gender'])) {
+                $gender = $_POST['gender'];
 				$genderErr = "Please fill up the Gender";
 			}
 			else {
 				$gender = $_POST['gender'];
-			}
+			}*/
+            $gender = $_POST['gender'];
             if(empty($_POST['userName'])) {
 				$userNameErr = "Please fill up the firstname";
 			}
@@ -69,12 +72,13 @@
         if(empty($_POST['remail'])) {
             $remailErr = "Please fill up the website";
         }
-        else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      /*  else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
               $remailErr = "Invalid Email Format";
-        }
+        }*/
         else {
             
-            $myfile = fopen("$remail.txt", "r") or die("Unable to open file!");
+            $myfile = fopen("email.txt", "r") or die("Unable to open file!");
+            echo fgets($myfile);
            if(fgets($myfile)==$remail) {
             $remail = $_POST['remail'];
            }
@@ -88,7 +92,9 @@
 
 
 
-		
+			if($firstNameErr == "" && $lastNameErr == "" && $emailErr == "" && $passwordErr == "" && $remailErr == ""&& $userNameErr == "") {
+				echo "Successful " . $firstName . " " . $lastName . " " . $email . " " . $gender . " " . $remail ;
+			}
 		}
     
 	?>
@@ -111,9 +117,9 @@
         <br>
 
         <label for="gender">Gender</label>
-        <input type="radio" name="gender" id="male" value="<?php echo $gender ?>">
+        <input type="radio" name="gender" id="male" value="male">
         <label for="male">Male</label>
-        <input type="radio" name="gender" id="female" value="<?php echo $gender?>">
+        <input type="radio" name="gender" id="female" value="female">
         <label for="female">Female</label>
         <p><?php echo $genderErr; ?></p>
         <br>
