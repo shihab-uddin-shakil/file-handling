@@ -41,7 +41,7 @@
                 $myfile = fopen("$email.txt", "w+") or die("Unable to open file!");
                  $txt = $email;
                   fwrite($myfile, $txt);
-                   $txt = "Jane Doe\n";
+                   $txt =  $email;;
                    fwrite($myfile, $txt);
                     fclose($myfile);
 			}
